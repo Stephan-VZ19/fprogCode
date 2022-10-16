@@ -1,0 +1,17 @@
+cabal-version:       >=1.10
+
+name:                list-functions
+version:             0.1.0.0
+author:              Daniel Kröni
+maintainer:          daniel.kroeni@fhnw.ch
+
+build-type:          Simple
+
+executable list-functions
+  main-is:             Main.hs
+  build-depends:       base >=4.13
+                      ,scotty ==0.12
+                      ,wai-extra 
+                      ,text 
+                      ,mtl 
+  default-language:    Haskell2010
