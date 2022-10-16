@@ -1,8 +1,11 @@
 incAll :: [Int] -> [Int]
-incAll = todo
+incAll = map (\x -> x + 1)
+-- incAll is = map (\x -> x + 1) is
 
 addToAll :: Int -> [Int] -> [Int]
-addToAll = todo
+addToAll = \x -> map (\y -> x + y)
+-- addToAll is = (\x -> map (\y -> x + y)) is
+-- addToAll f is = (\x -> map (\y -> x + y)) is
 
 keepOld :: [Int] -> [Int]
 keepOld = todo
