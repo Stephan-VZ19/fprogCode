@@ -8,9 +8,10 @@ addToAll = \x -> map (\y -> x + y)
 -- addToAll f is = (\x -> map (\y -> x + y)) is
 
 keepOld :: [Int] -> [Int]
-keepOld = todo
+keepOld is = filter (\i -> i >= 90) is
+-- don't know why it doesn't work
 
 dropShort :: [String] -> [String]
-dropShort = todo
+dropShort ss = filter (\s -> length s /= 1) ss
 
-todo = error "TODO"
+-- todo = error "TODO"
