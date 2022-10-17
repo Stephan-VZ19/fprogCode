@@ -1,4 +1,6 @@
 -- Aufgabe 2
 
 countDown :: Int -> [Int]
-countDown 
+countDown n
+    | n < 0     = []
+    | otherwise = [] ++ [countDown n-1]
