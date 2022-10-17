@@ -2,5 +2,5 @@
 
 countDown :: Int -> [Int]
 countDown n
-    | n < 0     = []
-    | otherwise = [] ++ [countDown n-1]
+    | n < 0     = n ++ []
+    | otherwise = [n] ++ [countDown n-1]
