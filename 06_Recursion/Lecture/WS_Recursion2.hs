@@ -14,8 +14,10 @@ eine Meldung auf der Konsole ausgeben und das Programm abbrechen.
 -- Aufgabe 1
 -- Implementieren Sie eine Funktion welche die Länge einer Liste bestimmt:
 
+
 len :: [a] -> Int
-len = todo
+len [] = 0
+len (_:xs) = 1 + len xs
 
 
 -- Aufgabe 2
