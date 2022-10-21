@@ -37,8 +37,12 @@ allTrue (x:xs)
 -- indem dessen Startposition und Länge gegeben ist.
 
 sublist :: Int -> Int -> [a] -> [a]
-sublist = todo
+sublist x y (e:es)
+    | e == y = []
+    | e < x = sublist x y ((e+1):es)
+    | e >= x && e <= y = sublist x y (e:e+1:es)
 
+    
 -- Beispiel: sublist 3 7 "Hello World" == "lo Worl"
 
 
