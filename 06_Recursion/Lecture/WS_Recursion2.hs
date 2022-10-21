@@ -26,7 +26,10 @@ len (_:xs) = 1 + len xs
 -- Hinweis: allTrue [] soll auf True evaluieren.
 
 allTrue :: [Bool] -> Bool
-allTrue = todo
+allTrue [] = True
+allTrue (x:xs)
+    | x == False = False
+    | otherwise = allTrue xs
 
 
 -- Aufgabe 3
