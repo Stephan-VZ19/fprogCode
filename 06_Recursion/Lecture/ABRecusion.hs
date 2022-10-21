@@ -14,3 +14,8 @@ countDown n
 
 countUp :: Int -> [Int]
 countUp n = reverse (countDown n)
+
+-- Aufgabe 4
+
+countDownUp :: Int -> [Int]
+countDownUp n = (countDown n) ++ tail (reverse (countDown n))
