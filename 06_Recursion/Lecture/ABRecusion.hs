@@ -9,3 +9,8 @@ countDown n
 -- oder
 -- countDown 0 = [0]
 -- countDown n = [n] ++ countDown (n-1)
+
+-- Aufgabe 3
+
+countUp :: Int -> [Int]
+countUp n = reverse (countDown n)
