@@ -14,8 +14,10 @@ eine Meldung auf der Konsole ausgeben und das Programm abbrechen.
 -- Aufgabe 1
 -- Implementieren Sie eine Funktion welche die Länge einer Liste bestimmt:
 
+
 len :: [a] -> Int
-len = todo
+len [] = 0
+len (_:xs) = 1 + len xs
 
 
 -- Aufgabe 2
@@ -24,7 +26,10 @@ len = todo
 -- Hinweis: allTrue [] soll auf True evaluieren.
 
 allTrue :: [Bool] -> Bool
-allTrue = todo
+allTrue [] = True
+allTrue (x:xs)
+    | x == False = False
+    | otherwise = allTrue xs
 
 
 -- Aufgabe 3
@@ -32,8 +37,12 @@ allTrue = todo
 -- indem dessen Startposition und Länge gegeben ist.
 
 sublist :: Int -> Int -> [a] -> [a]
-sublist = todo
+sublist x y (e:es)
+    | e == y = []
+    | e < x = sublist x y ((e+1):es)
+    | e >= x && e <= y = sublist x y (e:e+1:es)
 
+    
 -- Beispiel: sublist 3 7 "Hello World" == "lo Worl"
 
 
