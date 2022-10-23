@@ -18,7 +18,9 @@ Zwei Formen werden von der Bibliothek unterstützt:
 Hinweis: Verwenden Sie deriving (Show) damit Ihr Datentyp auf in einen
 lesbaren String übersetzt werden kann.
 
-> data Shape -- TODO
+> data Shape = Rectangle Int Int
+>            | Circle Int
+>              deriving (Show)
 
 b) Definieren Sie die Funktion circumference, die den Umfang einer Form berechnet:
 Hinweis: Die Kreiskonstante π ist vordefiniert unter dem Namen pi.
