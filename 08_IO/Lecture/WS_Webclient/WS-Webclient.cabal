@@ -1,0 +1,13 @@
+cabal-version:       >=1.10
+name:                WS-Webclient
+version:             0.1.0.0
+author:              Daniel Kröni
+build-type:          Simple
+
+executable webclient
+  main-is:             Main.hs
+  build-depends:       base >=4.13
+                      ,http-client-tls
+                      ,http-client
+                      ,bytestring
+  default-language:    Haskell2010
