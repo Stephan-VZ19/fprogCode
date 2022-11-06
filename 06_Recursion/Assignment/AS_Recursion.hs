@@ -9,5 +9,6 @@ max' x y
     | otherwise = y
 
 maxl :: (Ord a) => [a] -> a
+maxl [] = error "empyt list"
 maxl (x:y:[]) = max' x y
 maxl (x:y:xs) = maxl ((max' x y):xs)
