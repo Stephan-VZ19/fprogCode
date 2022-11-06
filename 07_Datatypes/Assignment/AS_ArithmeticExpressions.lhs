@@ -44,7 +44,7 @@ Aufgabe 1)
 Zeichnen Sie den Baum und konstruieren Sie den Wert vom Typ Expr in Haskell für folgenden
 Ausdruck: "(3*4)+(5+2)"
 
->
+> ex3 = (((Const 3) `Mul` (Const 4)) `Add` (((Cost 5) `Add` (Const 2))))
 
 Aufgabe 2)
 Einen solchen arithmetischen Ausdruck kann man nun ausrechnen (evaluieren).
