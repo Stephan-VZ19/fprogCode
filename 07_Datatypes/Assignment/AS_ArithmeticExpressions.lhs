@@ -44,7 +44,15 @@ Aufgabe 1)
 Zeichnen Sie den Baum und konstruieren Sie den Wert vom Typ Expr in Haskell für folgenden
 Ausdruck: "(3*4)+(5+2)"
 
-> ex3 = (((Const 3) `Mul` (Const 4)) `Add` (((Cost 5) `Add` (Const 2))))
+> ex = ((Const 3) `Mul` (Const 4)) `Add` ((Const 5) `Add` (Const 2))
+
+       +
+     /   \
+    *     +
+   / \   / \
+  3  4   5  2
+
+
 
 Aufgabe 2)
 Einen solchen arithmetischen Ausdruck kann man nun ausrechnen (evaluieren).
@@ -61,7 +69,9 @@ Expr ist der Wert sofort klar? Bei den anderen beiden Fällen, müssen Sie sich 
 wie man zum Resultat kommt, wenn die beiden Teilresultate schon evaluiert wurden:
 
 > eval :: Expr -> Int
-> eval = undefined --TODO
+> eval (Const n) = n
+> eval (Add l r) = eval l + eval r
+> eval (Mul l r) = eval l * eval r
 
 Aufgabe 3)
 Schreiben Sie mindestens drei Unit Tests um die eval Funktion zu testen.
