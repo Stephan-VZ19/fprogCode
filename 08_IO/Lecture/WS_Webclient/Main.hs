@@ -11,18 +11,13 @@ import qualified Data.ByteString.Lazy.Char8 as L8
 -- cabal run webclient Arg1
 main :: IO ()
 main = do
-    manager <- newManager ...
-    let manager2 = read manager :: Manager
-    let urlA = "https://wttr.in/"
-    let urlB = "?format=3"
-    putStrLn "Please enter the location:"
-    location <- getLine
-    let loc = read location :: String
-    let url = urlA ++ loc ++ urlB
+    manager <- newManager tlsManagerSettings
+    [location] <- getArgs
+    let url = buildURL location
     request <- parseRequest url
+    response <- httpLbs request manager
+    let body = responseBody response
+    L8.putStrLn body
 
-
-
-
-
-    putStrLn "Load the current weather from https://wttr.in"
+buildURL :: String -> String
+buildURL location = "https://wttr.in/~" ++ location ++ "?format=3"
