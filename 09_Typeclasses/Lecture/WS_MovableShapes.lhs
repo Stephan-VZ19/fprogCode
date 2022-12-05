@@ -47,18 +47,28 @@ Aufgabe 1)
 Definieren Sie die Typeklasse Movable. Sie soll eine Methode beinhalten:
 move :: Vector -> a -> a
 
-> 
+> class Movable a where
+>      move :: Vector -> a -> a
 
 Aufgabe 2)
 Implementieren Sie Instanzen für Point, Figure und TextBox.
 
->
+> instance Movable Point where
+>      move (Vec dx dy) (XY x y) = XY (x + dx) (y + dy)
+
+> instance Movable Figure where
+>      move v (Circle p s) = Circle (move v p) s
+>      move v (Line p1 p2) = Line (move v p1) (move v p2)
+
+> instance Movable TextBox where
+>      move v (Text p s) = Text (move v p) s
 
 Aufgabe 3)
 Implementieren Sie eine Instanz für [a] wobei a der Typklasse Movable
 angehören muss:
 
->
+> instance Movable a => Movable [a] where
+>      move v as = map (move v) as
 
 Wenn Sie alles richtig gemacht haben, können Sie nun eine Liste,
 die Figuren enthält verschieben:
@@ -67,7 +77,7 @@ die Figuren enthält verschieben:
 
 Aktivieren Sie die folgende Zeile wenn Sie Aufgabe 1 - 3 gelöst haben.
 
- after = move (Vec 2 3) before
+> after = move (Vec 2 3) before
 
 
 ------------------------------ STOP ----------------------------
