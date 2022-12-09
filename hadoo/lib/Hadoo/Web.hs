@@ -35,21 +35,29 @@ demoPageAction = do
     htmlString demoPage
 
 testPageAction :: ActionM ()
-testPageAction = htmlString $ 
+testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> </link></head>") ++
   e "h1" "Hadoo"  -- title
   ++ ea "div" [("class", "container")]  -- container for all
     (ea "div" [("class", "lane")] (   -- first lane
-      (ea "div" [("class", "title")] "Todo")
-      ++ (ea "div" [("class", "item")] (
-        (e "pre" "Todo1: \n Es gibt noch viel zu tun"))
+      (ea "div" [("class", "title")] "Todo")  -- lane title
+      ++ (ea "div" [("class", "item")] (  -- item
+        (e "pre" "Todo1: \n Es gibt noch viel zu tun"))   -- textfield
         ++ (ea "form" [("method", "post"), ("action", "/items/Todo/1/move/Started"), (("class", "inline"))] 
           (ea "button" [("type", "submit")] "&gt;")
         )
       )     
     )
-          
+    ++ (ea "div" [("class", "lane")] 
+      (ea "div" [("class", "title")] "Started")  -- lane title
+      ++ (ea "div" [("class", "item")] (  -- item
+        (e "pre" "Todo1: \n Es gibt noch viel zu tun"))   -- textfield
+        ++ (ea "form" [("method", "post"), ("action", "/items/Todo/1/move/Started"), (("class", "inline"))] 
+          (ea "button" [("type", "submit")] "&gt;")
+        )
+      )
+    )      
   )
-  
+
 
 indexAction :: ActionM () 
 indexAction = htmlString $ e "h1" "Hadoo Neu" 
