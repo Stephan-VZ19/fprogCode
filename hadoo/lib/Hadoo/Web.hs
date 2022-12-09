@@ -16,6 +16,7 @@ main = scotty 3000 $ do
   get "/styles.css" styles 
   get "/" indexAction
   get "/demo" demoPageAction
+  get "/test" testPageAction
 
 styles :: ActionM ()
 styles = do
@@ -33,8 +34,25 @@ demoPageAction = do
     demoPage <- liftIO (readFile "static/lanes_example.html")
     htmlString demoPage
 
+testPageAction :: ActionM ()
+testPageAction = htmlString $ 
+  e "h1" "Hadoo"  -- title
+  ++ ea "div" [("class", "container")]  -- container for all
+    (ea "div" [("class", "lane")] (   -- first lane
+      (ea "div" [("class", "title")] "Todo")
+      ++ (ea "div" [("class", "item")] (
+        (e "pre" "Todo1: \n Es gibt noch viel zu tun"))
+        ++ (ea "form" [("method", "post"), ("action", "/items/Todo/1/move/Started"), (("class", "inline"))] 
+          (ea "button" [("type", "submit")] "&gt;")
+        )
+      )     
+    )
+          
+  )
+  
+
 indexAction :: ActionM () 
-indexAction = htmlString $ e "h1" "Hadoo"
+indexAction = htmlString $ e "h1" "Hadoo Neu" 
 
 htmlString :: String -> ActionM ()
 htmlString = html . LT.pack
