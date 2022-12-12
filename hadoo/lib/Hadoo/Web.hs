@@ -1,8 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Hadoo.Web 
-(htmlString
-) where
+module Hadoo.Web where
 
 import Web.Scotty 
 import Network.Wai.Middleware.RequestLogger (logStdoutDev)
@@ -64,13 +62,10 @@ testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> 
     
 
 deleteItem :: ActionM ()
-deleteItem = htmlString $ "delete page"
+deleteItem = htmlString $ e "h1" "delete page"
 
 createItem :: ActionM ()
-createItem = do
-    text <- liftIO (readFile "data/Todo/000.txt")
-    writeFile "015.txt" text
-    htmlString (e "h1" "Item create")
+createItem = htmlString $ e "h1" "create page"
 
 
 indexAction :: ActionM () 
