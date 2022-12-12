@@ -17,6 +17,7 @@ main = scotty 3000 $ do
   get "/" indexAction
   get "/demo" demoPageAction
   get "/test" testPageAction
+  post "/009/create" createItem
 
 styles :: ActionM ()
 styles = do
@@ -58,9 +59,17 @@ testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> 
     )      
   )
 
+deleteItem :: ActionM ()
+deleteItem = htmlString $ "delete page"
+
+createItem :: ActionM ()
+createItem text = do
+    text <- liftIO (readFile "data/Todo/")
+    writeFile "015.text" text
+
 
 indexAction :: ActionM () 
-indexAction = htmlString $ e "h1" "Hadoo Neu" 
+indexAction = htmlString $ e "h1" "Hadoo, to be implemented" 
 
 htmlString :: String -> ActionM ()
 htmlString = html . LT.pack
