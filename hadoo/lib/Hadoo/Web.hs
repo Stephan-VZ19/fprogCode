@@ -1,12 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Hadoo.Web where
+module Hadoo.Web 
+(htmlString
+) where
 
 import Web.Scotty 
 import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.Text.Lazy as LT
-import Data.List (intersperse)
+
+import Hadoo.Factory (e, ea)
 
 
 main :: IO ()
@@ -17,7 +20,7 @@ main = scotty 3000 $ do
   get "/" indexAction
   get "/demo" demoPageAction
   get "/test" testPageAction
-  post "/009/create" createItem
+  get "/009/create" createItem
 
 styles :: ActionM ()
 styles = do
@@ -58,14 +61,16 @@ testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> 
       )
     )      
   )
+    
 
 deleteItem :: ActionM ()
 deleteItem = htmlString $ "delete page"
 
 createItem :: ActionM ()
-createItem text = do
-    text <- liftIO (readFile "data/Todo/")
-    writeFile "015.text" text
+createItem = do
+    text <- liftIO (readFile "data/Todo/000.txt")
+    writeFile "015.txt" text
+    htmlString (e "h1" "Item create")
 
 
 indexAction :: ActionM () 
@@ -74,16 +79,4 @@ indexAction = htmlString $ e "h1" "Hadoo, to be implemented"
 htmlString :: String -> ActionM ()
 htmlString = html . LT.pack
 
--- | Type Alias für Html Strings
-type Html = String
 
--- | Erzeugt ein Element ohne Attribute
-e :: String -> Html -> Html
-e tag kids = ea tag [] kids
-
--- | Erzeugt ein Element mit Attributen
-ea :: String -> [(String, String)] -> Html -> Html
-ea tag attrs kids = concat $ ["<", tag] ++ attrsHtml attrs ++ [">", kids, "</", tag, ">"]
-  where attrsHtml [] = []
-        attrsHtml as = " " : intersperse " " (map attrHtml as)
-        attrHtml (key, value) = key ++ "='" ++ value ++ "'"
