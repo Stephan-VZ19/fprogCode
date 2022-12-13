@@ -1,9 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Hadoo.Factory
-(e,
-ea
-) where
+module Hadoo.Factory where
 
 import Data.List (intersperse)
 

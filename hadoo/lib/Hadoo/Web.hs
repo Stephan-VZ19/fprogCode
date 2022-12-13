@@ -7,8 +7,7 @@ import Network.Wai.Middleware.RequestLogger (logStdoutDev)
 import Control.Monad.IO.Class (liftIO)
 import qualified Data.Text.Lazy as LT
 
-import Hadoo.Factory (e, ea)
-
+import Hadoo.Factory
 
 main :: IO ()
 main = scotty 3000 $ do
@@ -18,7 +17,7 @@ main = scotty 3000 $ do
   get "/" indexAction
   get "/demo" demoPageAction
   get "/test" testPageAction
-  get "/009/create" createItem
+  post "/009/create" createItem
 
 styles :: ActionM ()
 styles = do
