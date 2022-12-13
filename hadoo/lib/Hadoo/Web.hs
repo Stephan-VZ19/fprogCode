@@ -8,6 +8,7 @@ import Control.Monad.IO.Class (liftIO)
 import qualified Data.Text.Lazy as LT
 
 import Hadoo.Factory
+import Hadoo.Storage
 
 main :: IO ()
 main = scotty 3000 $ do
