@@ -47,8 +47,30 @@ renderStaticIndex = linkCSS ++
     )      
   )
 
+-- | 
+
 -- | Erzeugt die vorhanden Items pro lane
 renderItems :: String -> String
 renderItems "Todo" = "..."
 renderItems "Started" = "..."
 renderItems "Done" = "..."
+
+
+-- | Erzeugt eine neue HTML Seite mit einem h1 Titel
+createPage :: String -> Html
+createPage title = 
+  "<!DOCTYPE html>" ++
+  ea "html" [("lang", "en")] 
+    (header ++ body title)
+
+-- | HTML erzeugt header
+header :: Html
+header = 
+  e "head" $
+    ea "link" [("rel", "stylesheet"), ("href", "/static/styles.css")] ""
+
+-- | HTML erzeugt body mit h1 titel
+body :: String -> Html
+body title = 
+  e "body" $
+    e "h1" title

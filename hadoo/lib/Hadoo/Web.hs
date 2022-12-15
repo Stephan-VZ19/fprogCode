@@ -18,7 +18,7 @@ main = scotty 3000 $ do
   get "/" indexAction
   get "/demo" demoPageAction
   get "/test" testPageAction
-  post "/009/create" createItem
+  post "/new" createItem
 
 styles :: ActionM ()
 styles = do
@@ -70,6 +70,7 @@ createItem = htmlString $ e "h1" "create page"
 
 indexAction :: ActionM () 
 indexAction = htmlString $ e "h1" "Hadoo, to be implemented" 
+  ++ ea "a" [("href", "./create")] "Create new item"
 
 htmlString :: String -> ActionM ()
 htmlString = html . LT.pack
