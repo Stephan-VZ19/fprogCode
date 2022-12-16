@@ -18,7 +18,13 @@ main = scotty 3000 $ do
   get "/" indexAction
   get "/demo" demoPageAction
   get "/test" testPageAction
-  post "/new" createItem
+  get "/new" createItem
+  post "/itmes" itemCreated
+  get "/items/:state/:nr/edit" editItem
+  post "/items/:state/:nr/" itemEdited
+  post "/items/:state/:nr/move/:nextState" stateChanged
+  post "/itmes/:state/:nr/delete" itemDeleted
+
 
 styles :: ActionM ()
 styles = do
@@ -29,7 +35,10 @@ styles = do
 -- Sie müssen diese Funktion verwenden um Multiline Textinput ("content") aus einer 
 -- Textarea auszulesen.
 multiLineTextParam :: String -> ActionM String
-multiLineTextParam paramName = fmap (filter (/='\r')) (param (LT.pack paramName)) 
+multiLineTextParam paramName = fmap (filter (/='\r')) (param (LT.pack paramName))
+
+htmlString :: String -> ActionM ()
+htmlString = html . LT.pack
 
 demoPageAction :: ActionM ()
 demoPageAction = do
@@ -59,20 +68,26 @@ testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> 
       )
     )      
   )
-    
-
-deleteItem :: ActionM ()
-deleteItem = htmlString $ e "h1" "delete page"
-
-createItem :: ActionM ()
-createItem = htmlString $ e "h1" "create page"
 
 
 indexAction :: ActionM () 
 indexAction = htmlString $ e "h1" "Hadoo, to be implemented" 
-  ++ ea "a" [("href", "./create")] "Create new item"
+  ++ ea "a" [("href", "./new")] "Create new item"
+    
+createItem :: ActionM ()
+createItem = htmlString $ e "h1" "create page"
 
-htmlString :: String -> ActionM ()
-htmlString = html . LT.pack
+itemCreated :: ActionM ()
+itemCreated = htmlString $ e "h1" "create page"
 
+editItem :: ActionM ()
+editItem = htmlString $ e "h1" "create page"
 
+itemEdited :: ActionM ()
+itemEdited = htmlString $ e "h1" "create page"
+
+stateChanged :: ActionM ()
+stateChanged = htmlString $ e "h1" "create page"
+
+itemDeleted :: ActionM ()
+itemDeleted = htmlString $ e "h1" "create page"
