@@ -79,7 +79,7 @@ body title =
 dropDownMenu :: Html
 dropDownMenu = e "form" $
   ea "select" [("name", "dropdown")] (
-    ea "option" [("value", "Todo"), ("selected", "")] "Todo"
+    ea "option" [("value", "Todo")] "Todo"
     ++ ea "option" [("value", "Started")] "Started"
     ++ ea "option" [("value", "Done")] "Done"
   )
@@ -87,9 +87,13 @@ dropDownMenu = e "form" $
 -- | Erzeugt eine textarea für die Eingabe
 textArea :: Html
 textArea = e "form" $
-  ea "textarea" [("name", "content"), ("rows", "10"), ("cols", "30")] "Text"
+  ea "textarea" [("form", "editform"), ("name", "content"), ("rows", "10"), ("cols", "30")] "Text"
 
 -- | Save button für den Text
 saveButton :: Html
-saveButton = ea "form" [("action", "/items"), ("method", "post")] $
+saveButton = ea "form" [("id", "editform"), ("action", "/items"), ("method", "post")] $
   ea "button" [("type", "submit")] "Save"
+
+-- | Entfernt die Fileendung .txt
+dropEnding :: String -> String
+dropEnding file = take 3 file

@@ -19,11 +19,11 @@ main = scotty 3000 $ do
   get "/demo" demoPageAction
   get "/test" testPageAction
   get "/new" createItem
-  post "/itmes" itemCreated
+  post "/items" itemCreated
   get "/items/:state/:nr/edit" editItem
   post "/items/:state/:nr/" itemEdited
   post "/items/:state/:nr/move/:nextState" stateChanged
-  post "/itmes/:state/:nr/delete" itemDeleted
+  post "/items/:state/:nr/delete" itemDeleted
 
 
 styles :: ActionM ()
@@ -69,7 +69,7 @@ testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> 
     )      
   )
 
-
+-- | Hauptseite
 indexAction :: ActionM () 
 indexAction = htmlString $ e "h1" "Hadoo, to be implemented" 
   ++ ea "a" [("href", "./new")] "Create new item"
@@ -85,7 +85,9 @@ createItem = htmlString $ createPage "Hadoo"
 
 -- | post /items Function
 itemCreated :: ActionM ()
-itemCreated = htmlString $ e "h1" "create page"
+itemCreated = do
+  state <- param "content"
+  htmlString $ e "h1" state
 
 editItem :: ActionM ()
 editItem = htmlString $ e "h1" "create page"
