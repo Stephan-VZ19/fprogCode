@@ -73,13 +73,17 @@ testPageAction = htmlString $ ("<head><link rel='stylesheet' href='styles.css'> 
 indexAction :: ActionM () 
 indexAction = htmlString $ e "h1" "Hadoo, to be implemented" 
   ++ ea "a" [("href", "./new")] "Create new item"
-    
+
+-- | get /new Funktion
 createItem :: ActionM ()
 createItem = htmlString $ createPage "Hadoo"
-  ++ e "h2" "Create one"
+  ++ e "h2" "Create a new one"
   ++ e "label" "State:"
   ++ dropDownMenu
+  ++ textArea
+  ++ saveButton
 
+-- | post /items Function
 itemCreated :: ActionM ()
 itemCreated = htmlString $ e "h1" "create page"
 

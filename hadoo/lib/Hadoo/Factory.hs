@@ -75,10 +75,21 @@ body title =
   e "body" $
     e "h1" title
 
-dropDownMenu :: String
+-- | Erzeugt ein Dropdownmenu
+dropDownMenu :: Html
 dropDownMenu = e "form" $
   ea "select" [("name", "dropdown")] (
     ea "option" [("value", "Todo"), ("selected", "")] "Todo"
     ++ ea "option" [("value", "Started")] "Started"
     ++ ea "option" [("value", "Done")] "Done"
   )
+
+-- | Erzeugt eine textarea für die Eingabe
+textArea :: Html
+textArea = e "form" $
+  ea "textarea" [("name", "content"), ("rows", "10"), ("cols", "30")] "Text"
+
+-- | Save button für den Text
+saveButton :: Html
+saveButton = ea "form" [("action", "/items"), ("method", "post")] $
+  ea "button" [("type", "submit")] "Save"
