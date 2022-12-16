@@ -74,3 +74,11 @@ body :: String -> Html
 body title = 
   e "body" $
     e "h1" title
+
+dropDownMenu :: String
+dropDownMenu = e "form" $
+  ea "select" [("name", "dropdown")] (
+    ea "option" [("value", "Todo"), ("selected", "")] "Todo"
+    ++ ea "option" [("value", "Started")] "Started"
+    ++ ea "option" [("value", "Done")] "Done"
+  )

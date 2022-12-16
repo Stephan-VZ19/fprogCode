@@ -75,7 +75,10 @@ indexAction = htmlString $ e "h1" "Hadoo, to be implemented"
   ++ ea "a" [("href", "./new")] "Create new item"
     
 createItem :: ActionM ()
-createItem = htmlString $ e "h1" "create page"
+createItem = htmlString $ createPage "Hadoo"
+  ++ e "h2" "Create one"
+  ++ e "label" "State:"
+  ++ dropDownMenu
 
 itemCreated :: ActionM ()
 itemCreated = htmlString $ e "h1" "create page"
