@@ -78,7 +78,7 @@ body title =
 -- | Erzeugt ein Dropdownmenu
 dropDownMenu :: Html
 dropDownMenu = e "form" $
-  ea "select" [("name", "dropdown")] (
+  ea "select" [("form", "editform"), ("name", "dropdown")] (
     ea "option" [("value", "Todo")] "Todo"
     ++ ea "option" [("value", "Started")] "Started"
     ++ ea "option" [("value", "Done")] "Done"
