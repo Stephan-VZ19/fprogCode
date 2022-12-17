@@ -86,7 +86,7 @@ createItem = htmlString $ createPage "Hadoo"
 -- | post /items Function
 itemCreated :: ActionM ()
 itemCreated = do
-  
+  state <- param "dropdown"
   text <- multiLineTextParam "content"
   htmlString $ e "h1" text
 
