@@ -87,13 +87,16 @@ dropDownMenu = e "form" $
 -- | Erzeugt eine textarea für die Eingabe
 textArea :: Html
 textArea = e "form" $
-  ea "textarea" [("form", "editform"), ("name", "content"), ("rows", "10"), ("cols", "30")] "Text"
+  ea "textarea" [("form", "editform"), ("name", "content"), ("rows", "10"), ("cols", "30")] ""
 
 -- | Save button für den Text
 saveButton :: Html
 saveButton = ea "form" [("id", "editform"), ("action", "/items"), ("method", "post")] $
   ea "button" [("type", "submit")] "Save"
 
--- | Entfernt die Fileendung .txt
-dropEnding :: String -> String
-dropEnding file = take 3 file
+itemButtons :: Html
+itemButtons = (((ea "button" [("type", "submit")] "&gt;")
+          ++ (ea "button" [("type", "submit")] "Edit")
+          ++ (ea "button" [("type", "submit")] "Delete")
+          )
+          )
